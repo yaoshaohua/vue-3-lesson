@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/index.ts"],
+  "sourcesContent": ["export function isObject(val: unknown): val is Record<any, any> {\n  return val !== null && typeof val === 'object'\n}\n"],
+  "mappings": ";AAAO,SAAS,SAAS,KAAuC;AAC9D,SAAO,QAAQ,QAAQ,OAAO,QAAQ;AACxC;",
+  "names": []
+}

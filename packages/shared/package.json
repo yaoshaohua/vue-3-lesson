@@ -1,0 +1,11 @@
+{
+  "name": "@chibivue/shared",
+  "version": "1.0.0",
+  "main": "dist/shared.esm.js",
+  "buildOptions": {
+    "formats": [
+      "esm-bundler",
+      "cjs"
+    ]
+  }
+}

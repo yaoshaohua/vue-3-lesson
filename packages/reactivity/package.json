@@ -1,0 +1,18 @@
+{
+  "name": "@chibivue/reactivity",
+  "version": "1.0.0",
+  "main": "dist/reactivity.esm-bundler.js",
+  "unpkg": "dist/reactivity.global.js",
+  "buildOptions": {
+    "name": "ChibivueReactivity",
+    "formats": [
+      "esm-bundler",
+      "esm-browser",
+      "cjs",
+      "global"
+    ]
+  },
+  "dependencies": {
+    "@chibivue/shared": "workspace:^"
+  }
+}
