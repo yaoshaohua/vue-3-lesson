@@ -1,4 +1,6 @@
+import { isObject } from "@chibivue/shared"
 import { track, trigger } from "./reactiveEffect"
+import { reactive } from "./reactive"
 
 export enum ReactiveFlags {
   IS_REACTIVE = '__v_isReactive'
@@ -10,10 +12,12 @@ export const mutableHandlers: ProxyHandler<any> = {
       return true
     }
 
-    const result = Reflect.get(target, key, receiver)
-
     track(target, key)
 
+    const result = Reflect.get(target, key, receiver)
+    if (isObject(result)) {
+      return reactive(result)
+    }
     return result
   },
   set(target, key, value, receiver) {

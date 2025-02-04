@@ -2,11 +2,25 @@ import { activeEffect, trackEffects, triggerEffects } from "./effect"
 
 const targetMap = new WeakMap()
 
-export function createDep(cleanup) {
+export function createDep(cleanup, key) {
   const dep = new Map() as any
   dep.cleanup = cleanup
+  dep.name = key
   return dep
 }
+
+// targetMap example:
+// WeakMap {Object => Map(2)}
+// { 
+//  key: { name: 'lihua', age: 18 }
+//  value: Map(2) {
+//   key: 'name',
+//   value: Map(1) {
+//     key: effect
+//     value: effect._trackId
+//   }
+//  }
+// }
 
 export function track(target, key) {
   if (!activeEffect) return
@@ -18,7 +32,7 @@ export function track(target, key) {
 
   let dep = depsMap.get(key)
   if (!dep) {
-    depsMap.set(key, dep = createDep(() => depsMap.delete(key)))
+    depsMap.set(key, dep = createDep(() => depsMap.delete(key), key))
   }
 
   trackEffects(activeEffect, dep)

@@ -8,25 +8,33 @@
 <body>
   <div id="app"></div>
   <script type="module">
-    import { reactive, effect } from './reactivity.esm.js'
+    import { reactive, effect, ref } from './reactivity.esm.js'
+    // import { reactive, effect } from '/vue-3-lesson/node_modules/@vue/reactivity/dist/reactivity.esm-browser.js'
 
     const obj = {
-      name: '1621',
-      age: 18
+      name: 'lihua',
+      age: 18,
+      address: {
+        city: 'beijing'
+      }
     }
+
     const state = reactive(obj)
 
+    const flag = ref(true)
+
     effect(() => {
+      debugger
       app.innerHTML = `
         <div>
-          <p>name: ${state.name}</p>
-          <p>age: ${state.age}</p>
+          <p>flag: ${flag.value}</p>
         </div>
       `
     })
 
     setTimeout(() => {
-      state.name = 'chibivue'
+      state.address.city = 'shanghai'
+      flag.value = false
     }, 1000)
   </script>
 </body>
